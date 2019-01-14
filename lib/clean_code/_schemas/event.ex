@@ -9,6 +9,9 @@ defmodule CleanCode.Event do
     field :description, :string
     field :published, :boolean, default: false
     field :title, :string
+    field :start_at, :utc_datetime
+    field :event_at, :utc_datetime
+
     belongs_to :user, User
     has_many :orders, Order
 

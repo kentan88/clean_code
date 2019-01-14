@@ -2,8 +2,8 @@ defmodule CleanCode.Accounts.User do
   @moduledoc """
   This module provides a public API for the Accounts context
   """
-  alias CleanCode.User
   alias CleanCode.Repo
+  alias CleanCode.User
   alias CleanCode.UserQuery
 
   def list_users(query \\ User) do

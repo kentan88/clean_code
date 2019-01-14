@@ -4,6 +4,7 @@ defmodule BetterCode.CreateOrderService do
 
   @moduledoc """
   This module provides a public API for creating a order
+  contexts involved: CMS, Sales (therefore cross-boundaries)
   """
   def process(attrs) do
     event = CMS.get_event(attrs.event_id)
