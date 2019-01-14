@@ -3,7 +3,7 @@ defmodule CleanCode.CMS.Event do
   wip
   """
   alias CleanCode.Event
-  alias CleanCode.EventQuery
+  import CleanCode.EventQuery
   alias CleanCode.Repo
 
   def list_events(query \\ Event) do
@@ -12,7 +12,7 @@ defmodule CleanCode.CMS.Event do
 
   def list_published_events do
     Event
-    |> EventQuery.where_published()
+    |> where_published()
     |> list_events()
   end
 end
