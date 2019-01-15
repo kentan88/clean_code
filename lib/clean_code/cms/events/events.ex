@@ -10,12 +10,21 @@ defmodule CleanCode.Events do
     repo.all(query)
   end
 
+  @spec get_published_events(Ecto.Repo.t(), Ecto.Query.t() | term()) :: [Event.t()]
+  def get_published_events(repo, query \\ Event) do
+    query =
+      query
+      |> where_published()
+
+    get_events(repo, query)
+  end
+
   @spec get_event(Ecto.Repo.t(), integer()) :: Event.t() | nil
   def get_event(repo, id) do
     repo.get(Event, id)
   end
 
   defp where_published(query) do
-    where(query, [event], event.published == true)
+    from(event in query, where: event.published == true)
   end
 end

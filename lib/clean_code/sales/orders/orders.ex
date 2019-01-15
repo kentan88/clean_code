@@ -11,31 +11,30 @@ defmodule CleanCode.Orders do
     repo.all(query)
   end
 
-  @spec get_paid_orders_for_event(Ecto.Repo.t(), Ecto.Query.t() | term()) :: [Order.t()]
-  def get_paid_orders_for_event(repo, %Event{} = event) do
+  @spec get_paid_orders_for_event(Ecto.Repo.t(), Event.t(), Ecto.Query.t() | term()) :: [Order.t()]
+  def get_paid_orders_for_event(repo, %Event{} = event, query \\ Order) do
     query =
-      Order
+      query
       |> paid()
       |> for_event(event)
 
     get_orders(repo, query)
   end
 
-  @spec get_pending_payment_orders_for_event(Ecto.Repo.t(), Ecto.Query.t() | term()) :: [
+  @spec get_pending_payment_orders_for_event(Ecto.Repo.t(), Event.t(), Ecto.Query.t() | term()) :: [
           Order.t()
         ]
-  def get_pending_payment_orders_for_event(repo, %Event{} = event) do
+  def get_pending_payment_orders_for_event(repo, %Event{} = event, query \\ Order) do
     query =
-      Order
+      query
       |> pending_payment()
       |> for_event(event)
 
     get_orders(repo, query)
   end
 
-  # @spec create_order(Ecto.Repo.t(), Order.order_attrs()) :: {atom(), Ecto.Changeset.t()}
-  @spec create_order(Ecto.Repo.t(), Order.order_attrs()) :: any() #the return type is wrong. {:ok, changeset}
-
+  @spec create_order(Ecto.Repo.t(), Order.order_attrs()) ::
+          {:ok, Ecto.Schema.t()} | {:error, Ecto.Changeset.t()}
   def create_order(repo, order_attrs) do
     %Order{}
     |> Order.changeset(order_attrs)
@@ -65,3 +64,5 @@ defmodule CleanCode.Orders do
   ##############################################################################
   ##############################################################################
 end
+
+# CleanCode.Orders.get_paid_orders_for_event(CleanCode.Repo, CleanCode.Events.get_event(CleanCode.Repo, 1))
