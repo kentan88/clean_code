@@ -1,8 +1,16 @@
 defmodule CleanCode.User do
   @moduledoc false
-  use Ecto.Schema
-  import Ecto.Changeset
+  use CleanCode.Schema
   alias CleanCode.Event
+
+  @type t :: %__MODULE__{
+          id: integer(),
+          email: String.t(),
+          name: String.t(),
+          password: String.t(),
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t()
+        }
 
   schema "users" do
     field :active, :boolean, default: false

@@ -9,8 +9,8 @@ Repo.delete_all(Order)
 Repo.delete_all(Event)
 Repo.delete_all(User)
 
-organizer = Repo.insert!(%User{name: "Ken Tan", active: true})
-organizer = Repo.insert!(%User{name: "Kiki Chen", active: true})
+organizer = Repo.insert!(%User{name: "Ken Tan", email: "ken@example.com", active: true})
+organizer = Repo.insert!(%User{name: "Kiki Chen", email: "kiki@example.com", active: false})
 
 event = Repo.insert!(%Event{title: "JSConf Asia 2019", published: true})
 event_2 = Repo.insert!(%Event{title: "Red Dot Ruby Conference 2019", published: true})
