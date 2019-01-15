@@ -10,10 +10,10 @@ defmodule CleanCode.Events do
     repo.all(query)
   end
 
-  @spec get_published_events(Ecto.Repo.t(), Ecto.Query.t() | term()) :: [Event.t()]
-  def get_published_events(repo, query \\ Event) do
+  @spec get_published_events(Ecto.Repo.t()) :: [Event.t()]
+  def get_published_events(repo) do
     query =
-      query
+      Event
       |> where_published()
 
     get_events(repo, query)
