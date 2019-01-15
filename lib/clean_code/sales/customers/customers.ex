@@ -28,7 +28,6 @@ defmodule CleanCode.Customers do
     get_customers(repo, query)
   end
 
-
   @spec get_customer(Ecto.Repo.t(), integer()) :: Customer.t() | nil
   def get_customer(repo, id) do
     repo.get(Customer, id)
